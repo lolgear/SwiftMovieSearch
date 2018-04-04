@@ -15,6 +15,8 @@ class DataProviderService: BaseService {
         return true
     }
     var timer: Timer?
+    func startTimer() {}
+    func stopTimer() {}
 }
 
 extension DataProviderService {
@@ -26,7 +28,34 @@ extension DataProviderService {
 extension DataProviderService {
     var updateTimeInterval: TimeInterval { return ApplicationSettingsStorage.loaded().updateTime }
     var backgroundFetchEnabled: Bool { return ApplicationSettingsStorage.loaded().backgroundFetch }
-    func startTimer() {
+}
+
+extension DataProviderService {
+
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        guard backgroundFetchEnabled else {
+            return
+        }
+    }
+    func applicationWillTerminate(_ application: UIApplication) {
+        stopTimer()
+    }
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        startTimer()
+    }
+    func applicationWillResignActive(_ application: UIApplication) {
+        stopTimer()
+    }
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        stopTimer()
+    }
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        startTimer()
+    }
+}
+
+class DataProviderServiceWithTimer: DataProviderService {
+    override func startTimer() {
         guard timer == nil else {
             LoggingService.logVerbose("timer already started!")
             return
@@ -39,63 +68,41 @@ extension DataProviderService {
             LoggingService.logVerbose("timer fired!")
         }
     }
-    func stopTimer() {
+    override func stopTimer() {
         LoggingService.logVerbose("timer invalidated!")
         timer?.invalidate()
         timer = nil
     }
 }
 
-extension DataProviderService {
-//    func updateQuotes() {
-//        self.dataProvider.updateQuotes {
-//            (result, error) in
-//            // log something?
-//            LoggingService.logVerbose("\(self) \(#function) fetch something? \(result) error: \(String(describing: error))")
-//        }
-//    }
-    //what? escaping without optionals?
-//    func updateQuotes(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-//        self.dataProvider.updateQuotes { (result, error) in
-//            if result {
-//                completionHandler(.newData)
-//            }
-//            else {
-//                completionHandler(.noData)
-//            }
-//        }
-//    }
-    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+class DebugDataProviderService: DataProviderService {
+    override func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         LoggingService.logVerbose("\(self) \(#function) perform background fetch!")
         
         guard backgroundFetchEnabled else {
             LoggingService.logVerbose("\(self) \(#function) background fetch disabled!")
             return
         }
-//        updateQuotes(completionHandler: completionHandler)
+        super.application(application, performFetchWithCompletionHandler: completionHandler)
     }
-    func applicationWillTerminate(_ application: UIApplication) {
+    override func applicationWillTerminate(_ application: UIApplication) {
         LoggingService.logVerbose("\(self) \(#function) stop timer!")
-        stopTimer()
+        super.applicationWillTerminate(application)
     }
-    func applicationDidBecomeActive(_ application: UIApplication) {
+    override func applicationDidBecomeActive(_ application: UIApplication) {
         LoggingService.logVerbose("\(self) \(#function) start timer!")
-        // DEBUG
-//        updateQuotes()
-        // fetch here for now
-        // DEBUG
-        startTimer()
+        super.applicationDidBecomeActive(application)
     }
-    func applicationWillResignActive(_ application: UIApplication) {
+    override func applicationWillResignActive(_ application: UIApplication) {
         LoggingService.logVerbose("\(self) \(#function) stop timer!")
-        stopTimer()
+        super.applicationWillResignActive(application)
     }
-    func applicationDidEnterBackground(_ application: UIApplication) {
+    override func applicationDidEnterBackground(_ application: UIApplication) {
         LoggingService.logVerbose("\(self) \(#function) stop timer!")
-        stopTimer()
+        super.applicationDidEnterBackground(application)
     }
-    func applicationWillEnterForeground(_ application: UIApplication) {
+    override func applicationWillEnterForeground(_ application: UIApplication) {
         LoggingService.logVerbose("\(self) \(#function) start timer!")
-        startTimer()
+        super.applicationWillEnterForeground(application)
     }
 }

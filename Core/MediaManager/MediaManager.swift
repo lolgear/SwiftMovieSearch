@@ -34,9 +34,9 @@ class ImageContainer {
     }
     func setUrl(url: URL?) {
         self.url = url
-        LoggingService.logDebug("start downloading url: \(url) by: \(self.mediaManager == nil)")
+//        LoggingService.logDebug("start downloading url: \(url) by: \(self.mediaManager == nil)")
         self.statusable = self.mediaManager?.imageAtUrl(url: url, { (url, image) in
-            LoggingService.logDebug("self.url: \(self.url) and url: \(url)")
+//            LoggingService.logDebug("self.url: \(self.url) and url: \(url)")
             if self.url == url {
                 DispatchQueue.main.async {
                     self.imageViewAccessor?.imageViewAccessor()?.image = image
@@ -107,7 +107,7 @@ class DownloadImageOperation: Operation {
     public override func start() {
         self.theExecuting = true
         self.theFinished = false
-        LoggingService.logDebug("start operation: \(self.url)")
+//        LoggingService.logDebug("start operation: \(self.url)")
         self.token = NetworkService.service()?.downloadResourceAtUrl(url: self.url, onResponse: { (triplet) in
             switch triplet {
             case .success(let _, let data):
@@ -115,7 +115,7 @@ class DownloadImageOperation: Operation {
                 self.finishing(with: data)
                 return
             case .error(let _, let error):
-                LoggingService.logDebug("error while downloading image: \(error)")
+//                LoggingService.logDebug("error while downloading image: \(error)")
                 // if error - hide it?
                 // or put in blacked list?
                 self.finishing(with: nil)
