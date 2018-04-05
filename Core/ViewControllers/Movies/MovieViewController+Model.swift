@@ -36,11 +36,12 @@ extension MovieViewController.Model {
     }
     
     func setup(details: [String : AnyObject]) {
-        self.movie.details = self.sanitize(details: details)
-        self.setup()
+        let details = self.sanitize(details: details)
+        self.dataSourceArray = self.arrayFrom(dictionary: details)
     }
+    
     func setup() {
-        self.dataSourceArray = self.arrayFrom(dictionary: self.movie.details)
+        self.setup(details: self.movie.details)
     }
     func configured(service: ServiceMoviesGetMovieDetailsProtocol?) -> Self {
         self.service = service
