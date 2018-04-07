@@ -54,6 +54,12 @@ extension MovieViewController: HasModelProtocol {
 
 // MARK: Setup
 extension MovieViewController {
+    func setupShare() {
+        // put later in ViewControllersService?
+        let action = ViewControllersService.NavigationAction.ShareMovie().configured(url: self.model?.imdbUrl).configured(controller: ViewControllersService.service()?.rootViewController)
+        ViewControllersService.service()?.currentRightActions = [action]
+        self.navigationItem.rightBarButtonItem = action.barButton()
+    }
     
     func setupUI() {
         self.setupTableView()
@@ -61,6 +67,7 @@ extension MovieViewController {
         self.setupImageView()
         
         self.setupExternalTableViewComponents()
+        self.setupShare()
     }
     
     func setupExternalTableViewComponents() {
@@ -161,6 +168,7 @@ extension MovieViewController: UserActionResponseGetMovieDetailsProtocol {
             switch result {
             case .success(let _):
                 self.tableView.reloadData()
+                self.setupShare()
             case .error(let error):
                 self.handleError(error: error)
                 break

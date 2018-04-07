@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+// MARK: Convenience Getters
+extension MovieViewController.Model {
+    var imdbUrl: URL? {
+        return URL(string: self.dataSourceArray.filter{$0.left == "imdbUrl"}.map{$0.right}.first ?? "")
+    }
+}
 // MARK: Setup
 extension MovieViewController.Model {
     func arrayFrom(dictionary: [String : AnyObject]) -> [Detail] {
@@ -30,6 +36,10 @@ extension MovieViewController.Model {
                 }
                 return [key, value].joined(separator: " ")
                 }.joined(separator: "\n") as AnyObject
+        }
+        
+        if let imbdId = details["imdbID"] as? String {
+            theDetails["imdbUrl"] = ("http://www.imdb.com/title/" + imbdId) as AnyObject
         }
         
         return theDetails

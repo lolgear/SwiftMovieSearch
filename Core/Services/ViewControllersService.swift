@@ -58,20 +58,46 @@ class ViewControllersService: BaseService {
                 return "ResetAll"
             }
         }
+        
+        class ShareMovie: NavigationAction {
+            var url: URL?
+            var controller: UIViewController?
+            func configured(url: URL?) -> Self {
+                self.url = url
+                return self
+            }
+            
+            func configured(controller: UIViewController?) -> Self {
+                self.controller = controller
+                return self
+            }
+            
+            override func barButton() -> UIBarButtonItem {
+                return UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(NavigationAction.action))
+            }
+            
+            override func action(button: UIBarButtonItem?) {
+                let controller = UIActivityViewController(activityItems: [self.url].compactMap {$0}, applicationActivities: nil)
+                self.controller?.present(controller, animated: true, completion: nil)
+            }
+        }
         // bind to itself
         enum NavigationActionType {
             case resetCash
             case showTransactions
             case resetExchanges
+            case shareMovie
             func action() -> NavigationAction {
                 switch self {
                 case .resetCash: return ResetCash()
                 case .showTransactions: return ShowTransactions()
                 case .resetExchanges: return ResetExchanges()
+                case .shareMovie: return ShareMovie()
                 }
             }
         }
     }
+    
     var rootViewController: UIViewController?
     var leftActions: [NavigationAction]?
     var rightActions: [NavigationAction]?
