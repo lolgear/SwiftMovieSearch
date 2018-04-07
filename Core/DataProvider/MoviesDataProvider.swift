@@ -213,7 +213,7 @@ extension MoviesDataProvider: ServiceMoviesGetMoreDataProtocol {
             return
         }
         if self.list.hasMore {
-            self.performSearch(page: self.list.nextPage) { (result) in
+            self.performSearch(page: self.list.currentPage) { (result) in
                 switch result {
                 case .success(let value):
                     let values = value.results
@@ -229,7 +229,7 @@ extension MoviesDataProvider: ServiceMoviesGetMoreDataProtocol {
             }
         }
         else {
-            onResponse(.error(Errors.invalidEmptyResult.error))
+            onResponse(.error(Errors.noMoreDataAvaiable.error))
         }
     }
 }

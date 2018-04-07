@@ -16,6 +16,10 @@ protocol PagedListUpdatesProtocol: class {
 }
 
 struct PagedList<Element> {
+    static func startPage() -> Int {
+        return 1
+    }
+    
     enum UpdateType {
         case append
         case update
@@ -23,7 +27,7 @@ struct PagedList<Element> {
     }
     
     var list = [Element]()
-    var currentPage = 1 // start page is 1? really? ok!
+    var currentPage = PagedList.startPage() // start page is 1? really? ok!
     var totalCount = 0
     var currentCount: Int { return list.count }
     var hasMore: Bool { return totalCount != currentCount }
@@ -63,6 +67,7 @@ extension PagedList {
     mutating func reset() {
         self.delegate?.willUpdate(pagedList: self)
         self.list = []
+        self.currentPage = type(of: self).startPage()
         self.delegate?.didUpdate(pagedList: self)
     }
 }
