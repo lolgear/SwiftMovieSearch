@@ -167,7 +167,7 @@ class MediaManager {
         queue.maxConcurrentOperationCount = 3
         return queue
     }()
-    var cache: MediaCache<NSURL, UIImage>?
+    var cache: MediaCache<NSURL, UIImage>? = MediaCache()
     var delegates: [AnyObject?]?
 }
 
