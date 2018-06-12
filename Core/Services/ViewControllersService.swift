@@ -12,6 +12,7 @@ import UIKit
     func shouldShow(controller: UIViewController?, for action:ViewControllersService.NavigationAction)
 }
 class ViewControllersService: BaseService {
+    var navigationControllerDelegate: UINavigationControllerDelegate? = CustomNavigationControllerDelegate()
     class NavigationAction: NSObject {
         weak var delegate: ViewControllersServiceNavigationActionProtocol?
         func configured(by delegate: ViewControllersServiceNavigationActionProtocol?) -> Self {
@@ -117,6 +118,9 @@ extension ViewControllersService {
         
         let controller = UINavigationController(rootViewController: viewController)
         let result = ErrorHanldingViewController(viewController: controller)
+        
+        // also set delegate
+        controller.delegate = self.navigationControllerDelegate
 //        controller.navigationItem.leftBarButtonItems = self.leftActions?.map {$0.barButton()}
 //        controller.navigationItem.rightBarButtonItems = self.rightActions?.map {$0.barButton()}
 //        controller.viewControllers.first?.navigationItem.leftBarButtonItems = controller.navigationItem.leftBarButtonItems

@@ -18,6 +18,8 @@
 		0A0D3D282073910300D263D4 /* TitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D3D262073904500D263D4 /* TitleSubtitleTableViewCell.swift */; };
 		0A0D3D2C2073926100D263D4 /* TitleSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A0D3D292073913900D263D4 /* TitleSubtitleTableViewCell.xib */; };
 		0A0D3D2F2073FFCA00D263D4 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D3D2D2073F87500D263D4 /* BaseTableViewController.swift */; };
+		0A1578B720D0286A00B40E1E /* NavigationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1578B620D0286A00B40E1E /* NavigationTransition.swift */; };
+		0A1578B920D0330000B40E1E /* NavigationTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1578B820D0330000B40E1E /* NavigationTransitionDelegate.swift */; };
 		0A3805A6207005D800F680E1 /* MoviePreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A3805A5207005D800F680E1 /* MoviePreviewTableViewCell.xib */; };
 		0A3805A8207014E800F680E1 /* ViewControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3805A7207014E800F680E1 /* ViewControllersProtocols.swift */; };
 		0A3805AB207029C000F680E1 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3805AA207029C000F680E1 /* MediaManager.swift */; };
@@ -97,6 +99,8 @@
 		0A0D3D262073904500D263D4 /* TitleSubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		0A0D3D292073913900D263D4 /* TitleSubtitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleSubtitleTableViewCell.xib; sourceTree = "<group>"; };
 		0A0D3D2D2073F87500D263D4 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		0A1578B620D0286A00B40E1E /* NavigationTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransition.swift; sourceTree = "<group>"; };
+		0A1578B820D0330000B40E1E /* NavigationTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionDelegate.swift; sourceTree = "<group>"; };
 		0A3805A5207005D800F680E1 /* MoviePreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoviePreviewTableViewCell.xib; sourceTree = "<group>"; };
 		0A3805A7207014E800F680E1 /* ViewControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllersProtocols.swift; sourceTree = "<group>"; };
 		0A3805AA207029C000F680E1 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
@@ -179,6 +183,15 @@
 				0A0D3D1420724E8C00D263D4 /* NotificationViewController.swift */,
 			);
 			path = Notifications;
+			sourceTree = "<group>";
+		};
+		0A1578B520D0286000B40E1E /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				0A1578B620D0286A00B40E1E /* NavigationTransition.swift */,
+				0A1578B820D0330000B40E1E /* NavigationTransitionDelegate.swift */,
+			);
+			path = Transitions;
 			sourceTree = "<group>";
 		};
 		0A3805A9207029B400F680E1 /* MediaManager */ = {
@@ -311,6 +324,7 @@
 		0A85E521206D7EDA0023B417 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0A1578B520D0286000B40E1E /* Transitions */,
 				0A0D3D132072423200D263D4 /* Notifications */,
 				0A0D3D07207241F700D263D4 /* Movies */,
 				0AD085CB206E807000CAFF97 /* UserActionsProtocols.swift */,
@@ -491,6 +505,7 @@
 				0A0D3D2F2073FFCA00D263D4 /* BaseTableViewController.swift in Sources */,
 				0A85E550206D7EDA0023B417 /* DateFormatter.swift in Sources */,
 				0A0D3D282073910300D263D4 /* TitleSubtitleTableViewCell.swift in Sources */,
+				0A1578B920D0330000B40E1E /* NavigationTransitionDelegate.swift in Sources */,
 				0A85E565206D86020023B417 /* LeftRightTableViewCell.swift in Sources */,
 				0A6F218520695BE400B0BD37 /* ViewController.swift in Sources */,
 				0A85E545206D7EDA0023B417 /* Collection+Extensions.swift in Sources */,
@@ -514,6 +529,7 @@
 				0A85E556206D7EDA0023B417 /* DataProviderService.swift in Sources */,
 				0A85E553206D7EDA0023B417 /* KeyboardService.swift in Sources */,
 				0A6F218320695BE400B0BD37 /* AppDelegate.swift in Sources */,
+				0A1578B720D0286A00B40E1E /* NavigationTransition.swift in Sources */,
 				0A85E540206D7EDA0023B417 /* ApplicationSettingsStorage.swift in Sources */,
 				0AD085C6206E23AC00CAFF97 /* Movie.swift in Sources */,
 				0A85E557206D7EDB0023B417 /* NetworkService.swift in Sources */,
