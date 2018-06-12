@@ -127,8 +127,7 @@ extension NotificationViewController {
         // messageLabel - safe area.spacing (>=)
         // messageLabel - titleLabel.spacing
 
-        if let superview = self.messageLabel.superview {
-            let view = self.messageLabel
+        if let superview = self.messageLabel.superview, let view = self.messageLabel {            
             let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=10)-[view]-(>=10)-|", options: [], metrics: nil, views: ["view": view])
             let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=10)-[view]-(>=10)-|", options: [], metrics: nil, views: ["view": view])
             let centerX = NSLayoutConstraint(item: view, attribute: .centerX, relatedBy: .equal, toItem: superview, attribute: .centerX, multiplier: 1, constant: 0)

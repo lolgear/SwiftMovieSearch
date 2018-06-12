@@ -75,7 +75,7 @@ extension MovieViewController {
         if self.viewIfLoaded != nil {
             // we need image view controller here.
             let frame = CGRect(x: 0, y: 0, width: 320, height: 250)
-            GoldenRatio.size(width: frame.width)
+            _ = GoldenRatio.size(width: frame.width)
             self.imageView.frame = frame
             self.tableView.tableHeaderView = self.imageView
         }
@@ -92,7 +92,7 @@ extension MovieViewController {
     }
     
     func requestImage() {
-        MediaDeliveryService.service()?.mediaManager.imageAtUrl(url: self.model?.movie.imageUrl, { (theUrl, image) in
+        _ = MediaDeliveryService.service()?.mediaManager.imageAtUrl(url: self.model?.movie.imageUrl, { (theUrl, image) in
             DispatchQueue.main.async {
                 if image != nil && theUrl != nil {
                     self.imageView.image = image
@@ -166,13 +166,12 @@ extension MovieViewController: UserActionResponseGetMovieDetailsProtocol {
     func didGetMovieDetails(result: Result<Bool, Error>) {
         DispatchQueue.main.async {
             switch result {
-            case .success(let _):
+            case .success( _):
                 self.tableView.reloadData()
                 self.setupShare()
             case .error(let error):
                 self.handleError(error: error)
                 break
-            default: break
             }
             self.stopSpinning()
         }

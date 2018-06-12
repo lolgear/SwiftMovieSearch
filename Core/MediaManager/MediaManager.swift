@@ -110,14 +110,15 @@ class DownloadImageOperation: Operation {
 //        LoggingService.logDebug("start operation: \(self.url)")
         self.token = NetworkService.service()?.downloadResourceAtUrl(url: self.url, onResponse: { (triplet) in
             switch triplet {
-            case .success(let _, let data):
+            case .success( _, let data):
                 // put into image cache.
                 self.finishing(with: data)
                 return
-            case .error(let _, let error):
+            case .error( _, let error):
 //                LoggingService.logDebug("error while downloading image: \(error)")
                 // if error - hide it?
                 // or put in blacked list?
+                print("error: \(String(describing: error))")
                 self.finishing(with: nil)
                 return
             }

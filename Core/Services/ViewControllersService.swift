@@ -228,7 +228,7 @@ extension ViewControllersService: UserActionResponseShowErrorProtocol {
             if controller.model?.discardable == false && model.presentation.style == .error {
                 return
             }
-            controller.configured(model: model)
+            _ = controller.configured(model: model)
             errorHandlingController.expandView(for: 1.5, dismissable: model.discardable)
         }
     }

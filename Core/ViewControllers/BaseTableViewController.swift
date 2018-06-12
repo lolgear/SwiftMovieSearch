@@ -74,7 +74,7 @@ extension BaseTableViewController {
             let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: ["view": self.tableView])
             let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "|[view]|", options: [], metrics: nil, views: ["view": self.tableView])
             superview.addConstraints(vertical + horizontal)
-            let height = NSLayoutConstraint(item: self.tableView, attribute: .height, relatedBy: .equal, toItem: superview, attribute: .height, multiplier: 1, constant: 0)
+            _ = NSLayoutConstraint(item: self.tableView, attribute: .height, relatedBy: .equal, toItem: superview, attribute: .height, multiplier: 1, constant: 0)
         }
     }
     

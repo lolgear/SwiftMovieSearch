@@ -171,7 +171,7 @@ extension MoviesViewController: UserActionResponseSearchProtocol {
     func didSearch(text: String, result: Result<Bool, Error>) {
         DispatchQueue.main.async {
             switch result {
-            case .success(let _):
+            case .success(_):
                 self.tableView.reloadData()
             case .error(let error):
                 self.handleError(error: error)
@@ -264,7 +264,7 @@ extension MoviesViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: MoviePreviewTableViewCell.cellReuseIdentifier(), for: indexPath)
         if let theCell = cell as? MoviePreviewTableViewCell {
             let item = self.model?.movie(at: indexPath.row)
-            LoggingService.logDebug("title: \(item?.title) and imageUrl:\(item?.imageUrl)")
+            LoggingService.logDebug("title: \(String(describing: item?.title)) and imageUrl:\(String(describing: item?.imageUrl))")
             // which item?
             // it should be what?
             let model = MoviePreviewTableViewCell.Model().configured(movie: item)

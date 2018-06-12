@@ -23,7 +23,7 @@ extension UIView {
         
         theView.addSubview(controllerView)
         
-        guard let controllerSuperview = theController.viewIfLoaded?.superview else {
+        guard (theController.viewIfLoaded?.superview) != nil else {
             return
         }
         
