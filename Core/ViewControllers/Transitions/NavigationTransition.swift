@@ -147,9 +147,10 @@ class CustomNavigationTransitioning: BasicNavigationTransitioning {
         
         // set up from 2D transforms that we'll use in the animation
         let offScreenRight = CGAffineTransform(translationX: container.frame.width, y: 0)
-        let offScreenLeft = CGAffineTransform(translationX: -container.frame.width, y: 0)
+        let offScreenLeft = CGAffineTransform(translationX: -container.frame.width/4, y: 0)
         
         // start the toView to the right of the screen
+        fromView.transform = CGAffineTransform.identity
         toView.transform = offScreenRight
         
         // add the both views to our view controller
@@ -160,7 +161,7 @@ class CustomNavigationTransitioning: BasicNavigationTransitioning {
         // for this example, just slid both fromView and toView to the left at the same time
         // meaning fromView is pushed off the screen and toView slides into view
         UIView.animate(withDuration: self.duration, animations: {
-            fromView.transform = offScreenLeft
+//            fromView.transform = offScreenLeft
             toView.transform = CGAffineTransform.identity
         }) { (result) in
             transitionContext.completeTransition(true)
