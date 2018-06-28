@@ -264,7 +264,7 @@ extension ErrorHanldingViewController {
     }
     
     func expandView(for duration: TimeInterval, dismissable: Bool = true) {
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [UIView.AnimationOptions.curveEaseInOut], animations: {
             self.barView.alpha = 1
         }, completion: {
             result in
@@ -278,7 +278,7 @@ extension ErrorHanldingViewController {
     
     func collapseView(animated: Bool = false, delayed: TimeInterval = 3) {
         if animated {
-            UIView.animate(withDuration: 0.5, delay: delayed, options: [.curveEaseInOut], animations: {
+            UIView.animate(withDuration: 0.5, delay: delayed, options: [UIView.AnimationOptions.curveEaseInOut], animations: {
                 self.barView.alpha = 0
             }, completion: nil)
         }
@@ -316,7 +316,7 @@ extension ErrorHanldingViewController {
         self.addConstraints()
         self.view.immerse(self.viewController, into: self.view)
         self.barView.immerse(self.notification, into: self.barView)
-        self.view.bringSubview(toFront: self.barView)
+        self.view.bringSubviewToFront(self.barView)
         self.collapseView()
     }
 }

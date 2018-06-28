@@ -98,7 +98,7 @@ extension MoviesViewController {
     
     override func setupTableView() {
         super.setupTableView()
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 92
         self.tableView.sectionHeaderHeight = 0
         self.tableView.register(MoviePreviewTableViewCell.nib(), forCellReuseIdentifier: MoviePreviewTableViewCell.cellReuseIdentifier())

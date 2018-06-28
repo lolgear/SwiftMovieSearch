@@ -23,12 +23,12 @@ class BaseTableViewController: UIViewController {
         }
     }
     
-    private(set) var style = UITableViewStyle.grouped
+    private(set) var style = UITableView.Style.grouped
     var tableViewDelegate: UITableViewDelegate?
     var tableViewDataSource: UITableViewDataSource?
     private(set) var refreshControl: UIRefreshControl? = {
         var refreshControl = UIRefreshControl(frame: CGRect.zero)
-        refreshControl.addTarget(self, action: #selector(BaseTableViewController.handleRefresh(_:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(BaseTableViewController.handleRefresh(_:)), for: UIControl.Event.valueChanged)
         return refreshControl
     }()
     
@@ -125,7 +125,7 @@ extension BaseTableViewController {
         return tableView
     }
     
-    func createTableView(style: UITableViewStyle) -> UITableView {
+    func createTableView(style: UITableView.Style) -> UITableView {
         return UITableView(frame: CGRect.zero, style: self.style)
     }
 }

@@ -58,7 +58,8 @@ extension PagedList {
         }
         self.currentPage = self.nextPage
         self.delegate?.didUpdate(pagedList: self)
-        return Range(previousEndIndex ..< currentEndIndex)
+                
+        return previousEndIndex ..< currentEndIndex
     }
 }
 

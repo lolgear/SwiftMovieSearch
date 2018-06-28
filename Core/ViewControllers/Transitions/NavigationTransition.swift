@@ -11,7 +11,7 @@ import UIKit
 
 class BasicNavigationTransitioning: NSObject {
     var duration: TimeInterval = 1.0
-    var function = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+    var function = CAMediaTimingFunction(name: convertToCAMediaTimingFunctionName(convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.easeInEaseOut)))
     var presenting = false
     // Subclass
     func prepareAnimations(transitionContext: UIViewControllerContextTransitioning, fromView: UIView, toView: UIView) {}
@@ -147,7 +147,7 @@ class CustomNavigationTransitioning: BasicNavigationTransitioning {
         
         // set up from 2D transforms that we'll use in the animation
         let offScreenRight = CGAffineTransform(translationX: container.frame.width, y: 0)
-        let offScreenLeft = CGAffineTransform(translationX: -container.frame.width/4, y: 0)
+        _ = CGAffineTransform(translationX: -container.frame.width/4, y: 0)
         
         // start the toView to the right of the screen
         fromView.transform = CGAffineTransform.identity
@@ -201,3 +201,13 @@ extension CustomNavigationTransitioning {
 ////
 ////    }
 //}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToCAMediaTimingFunctionName(_ input: String) -> CAMediaTimingFunctionName {
+	return CAMediaTimingFunctionName(rawValue: input)
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromCAMediaTimingFunctionName(_ input: CAMediaTimingFunctionName) -> String {
+	return input.rawValue
+}

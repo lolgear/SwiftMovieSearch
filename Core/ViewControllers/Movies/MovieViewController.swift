@@ -103,11 +103,11 @@ extension MovieViewController {
 
     
     func setupTableView() {
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 1
         
         // ImageView here.
-        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.estimatedSectionHeaderHeight = 1
         self.tableView.register(TableViewCell.nib(), forCellReuseIdentifier: TableViewCell.cellReuseIdentifier())
         
@@ -119,7 +119,7 @@ extension MovieViewController {
 extension MovieViewController {
     func setupRefresh() {
         let refresh = UIRefreshControl(frame: CGRect.zero)
-        refresh.addTarget(self, action: #selector(MovieViewController.handleRefresh(_:)), for: .valueChanged)
+        refresh.addTarget(self, action: #selector(MovieViewController.handleRefresh(_:)), for: UIControl.Event.valueChanged)
         self.refreshControl = refresh
     }
     @objc func handleRefresh(_ refresh: UIRefreshControl?) {
