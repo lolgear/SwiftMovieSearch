@@ -9,40 +9,40 @@
 import Foundation
 import UIKit
 
-protocol Statusable: class {
+public protocol Statusable: class {
     var isExecuting: Bool { get }
     var isFinished: Bool { get }
     func cancel()
 }
 
-protocol CancellationToken {
+public protocol CancellationToken {
     func resume()
     func suspend()
     func cancel()
 }
 
-enum Triplet<A, B, C> {
+public enum Triplet<A, B, C> {
     case success(A, B)
     case error(A, C)
 }
 
-protocol HasImageView: class {
+public protocol HasImageView: class {
     func imageViewAccessor() -> UIImageView?
 }
 
-class ImageContainer {
-    weak var imageViewAccessor: HasImageView?
-    weak var mediaManager: MediaManager?
-    weak var statusable: Statusable?
+public class ImageContainer {
+    public weak var imageViewAccessor: HasImageView?
+    public weak var mediaManager: MediaManager?
+    public weak var statusable: Statusable?
     var url: URL?
     
-    func cancel() {
+    public func cancel() {
         self.statusable?.cancel()
         self.imageViewAccessor = nil
         self.statusable = nil
         self.url = nil
     }
-    func setUrl(url: URL?) {
+    public func setUrl(url: URL?) {
         self.url = url
 //        LoggingService.logDebug("start downloading url: \(url) by: \(self.mediaManager == nil)")
         self.statusable = self.mediaManager?.imageAtUrl(url: url, { (url, image) in
@@ -54,17 +54,18 @@ class ImageContainer {
             }
         })
     }
+    public init() {}
 }
 
 typealias ImageResultClosure = (UIImage?) -> ()
 
-protocol DownloadImageOperationService {
+public protocol DownloadImageOperationService {
     func downloadAtUrl(url: URL?,  onResponse: @escaping DownloadImageOperation.TaskCompletion) -> CancellationToken?
 }
 
-class DownloadImageOperation: Operation {
-    typealias TaskCompletion = (Triplet<URL?, Data?, Error?>) -> Void
-    typealias Completion = (Data?) -> ()
+public class DownloadImageOperation: Operation {
+    public typealias TaskCompletion = (Triplet<URL?, Data?, Error?>) -> Void
+    public typealias Completion = (Data?) -> ()
     // the same as operation.
     var onCompletion: (Completion)?
     var url: URL
@@ -190,7 +191,7 @@ class DownloadImageOperation: Operation {
 
 extension DownloadImageOperation: Statusable {}
 
-class MediaManager {
+public class MediaManager {
     class MediaCache<Key, Value> where Key: AnyObject, Value: AnyObject {
         // use NSCache here.
         var cache = NSCache<Key, Value>()
@@ -211,7 +212,9 @@ class MediaManager {
     
     var cache: MediaCache<NSURL, UIImage>? = MediaCache()
     var delegates: [AnyObject?]?
-    var downloadService: DownloadImageOperationService?
+    
+    public var downloadService: DownloadImageOperationService?
+    public init() {}
 }
 
 // MARK: DownloadAtUrl
@@ -238,8 +241,8 @@ extension MediaManager {
     // completion is a SHIT!
     // we can't now when we could download image in case of operation.
     // or we could?
-    func imageAtUrl(url: URL?, _ onCompletion: @escaping (URL?, UIImage?) -> ()) -> Statusable? {
-        LoggingService.logDebug("operations count: \(self.operationQueue.operations.count)")
+    public func imageAtUrl(url: URL?, _ onCompletion: @escaping (URL?, UIImage?) -> ()) -> Statusable? {
+        print("operations count: \(self.operationQueue.operations.count)")
         guard let theUrl = url else {
             onCompletion(nil, nil)
             return nil
@@ -261,13 +264,13 @@ extension MediaManager {
 
 // MARK: Cancel
 extension MediaManager {
-    func cancellAll() {
+    public func cancellAll() {
         self.operationQueue.cancelAllOperations()
         //TODO: and cancel all operations?
 //        NetworkService.service()?.client?
 //        NetworkService.service()?.client?
     }
-    func cancel(url: URL) {
+    public func cancel(url: URL) {
         self.operationQueue.operations.filter { ($0 as? DownloadImageOperation)?.url == url }.first?.cancel()
     }
 }

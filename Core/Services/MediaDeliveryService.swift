@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ImagineDragon
 class MediaDeliveryService: BaseService {
     lazy var mediaManager = MediaManager()
 }

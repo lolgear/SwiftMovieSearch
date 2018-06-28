@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import ImagineDragon
 
 protocol ServicesInfoProtocol {
     var health: Bool {get}
@@ -54,8 +55,8 @@ extension BaseService: UIApplicationDelegate {
     
 }
 
-class MediaDeliveryServiceDownloadWrapper: DownloadImageOperationService {
-    func downloadAtUrl(url: URL?, onResponse: @escaping DownloadImageOperation.TaskCompletion) -> CancellationToken? {
+class MediaDeliveryServiceDownloadWrapper: ImagineDragon.DownloadImageOperationService {
+    func downloadAtUrl(url: URL?, onResponse: @escaping ImagineDragon.DownloadImageOperation.TaskCompletion) -> ImagineDragon.CancellationToken? {
         return self.service?.downloadResourceAtUrl(url: url, onResponse: { (triplet) in
             switch triplet {
             case .success(let a, let b):
@@ -63,7 +64,7 @@ class MediaDeliveryServiceDownloadWrapper: DownloadImageOperationService {
             case .error(let a, let b):
                 onResponse(.error(a, b))
             }
-        }) as? CancellationToken
+        }) as? ImagineDragon.CancellationToken
     }
     
     weak var service: NetworkService?

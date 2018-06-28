@@ -22,8 +22,11 @@
 		0A1578B920D0330000B40E1E /* NavigationTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1578B820D0330000B40E1E /* NavigationTransitionDelegate.swift */; };
 		0A3805A6207005D800F680E1 /* MoviePreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A3805A5207005D800F680E1 /* MoviePreviewTableViewCell.xib */; };
 		0A3805A8207014E800F680E1 /* ViewControllersProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3805A7207014E800F680E1 /* ViewControllersProtocols.swift */; };
-		0A3805AB207029C000F680E1 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3805AA207029C000F680E1 /* MediaManager.swift */; };
 		0A3805AD2070363B00F680E1 /* MediaDeliveryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3805AC2070363B00F680E1 /* MediaDeliveryService.swift */; };
+		0A3E2E4820E4FABB00595949 /* ImagineDragon.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A3E2E4620E4FABB00595949 /* ImagineDragon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A3E2E4B20E4FABB00595949 /* ImagineDragon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3E2E4420E4FABB00595949 /* ImagineDragon.framework */; };
+		0A3E2E4C20E4FABB00595949 /* ImagineDragon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3E2E4420E4FABB00595949 /* ImagineDragon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A3E2E5220E4FAE100595949 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3E2E5120E4FAE100595949 /* MediaManager.swift */; };
 		0A6F218320695BE400B0BD37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6F218220695BE400B0BD37 /* AppDelegate.swift */; };
 		0A6F218520695BE400B0BD37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6F218420695BE400B0BD37 /* ViewController.swift */; };
 		0A6F219D20695CA100B0BD37 /* NetworkWorm.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A6F219B20695CA100B0BD37 /* NetworkWorm.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,6 +67,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0A3E2E4920E4FABB00595949 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A6F217720695BE400B0BD37 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A3E2E4320E4FABB00595949;
+			remoteInfo = ImagineDragon;
+		};
 		0A6F219E20695CA100B0BD37 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A6F217720695BE400B0BD37 /* Project object */;
@@ -80,6 +90,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0A3E2E4C20E4FABB00595949 /* ImagineDragon.framework in Embed Frameworks */,
 				0A6F21A120695CA100B0BD37 /* NetworkWorm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -103,8 +114,11 @@
 		0A1578B820D0330000B40E1E /* NavigationTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionDelegate.swift; sourceTree = "<group>"; };
 		0A3805A5207005D800F680E1 /* MoviePreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoviePreviewTableViewCell.xib; sourceTree = "<group>"; };
 		0A3805A7207014E800F680E1 /* ViewControllersProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllersProtocols.swift; sourceTree = "<group>"; };
-		0A3805AA207029C000F680E1 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		0A3805AC2070363B00F680E1 /* MediaDeliveryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDeliveryService.swift; sourceTree = "<group>"; };
+		0A3E2E4420E4FABB00595949 /* ImagineDragon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImagineDragon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A3E2E4620E4FABB00595949 /* ImagineDragon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagineDragon.h; sourceTree = "<group>"; };
+		0A3E2E4720E4FABB00595949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A3E2E5120E4FAE100595949 /* MediaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		0A6F217F20695BE400B0BD37 /* SwiftMovieSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftMovieSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6F218220695BE400B0BD37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A6F218420695BE400B0BD37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,10 +161,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0A3E2E4120E4FABB00595949 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0A6F217C20695BE400B0BD37 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3E2E4B20E4FABB00595949 /* ImagineDragon.framework in Frameworks */,
 				0A6F21A020695CA100B0BD37 /* NetworkWorm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,10 +216,20 @@
 			path = Transitions;
 			sourceTree = "<group>";
 		};
-		0A3805A9207029B400F680E1 /* MediaManager */ = {
+		0A3E2E4520E4FABB00595949 /* ImagineDragon */ = {
 			isa = PBXGroup;
 			children = (
-				0A3805AA207029C000F680E1 /* MediaManager.swift */,
+				0A3E2E5020E4FAE100595949 /* MediaManager */,
+				0A3E2E4620E4FABB00595949 /* ImagineDragon.h */,
+				0A3E2E4720E4FABB00595949 /* Info.plist */,
+			);
+			path = ImagineDragon;
+			sourceTree = "<group>";
+		};
+		0A3E2E5020E4FAE100595949 /* MediaManager */ = {
+			isa = PBXGroup;
+			children = (
+				0A3E2E5120E4FAE100595949 /* MediaManager.swift */,
 			);
 			path = MediaManager;
 			sourceTree = "<group>";
@@ -208,6 +240,7 @@
 				0A85E50C206D7EDA0023B417 /* Core */,
 				0A6F218120695BE400B0BD37 /* SwiftMovieSearch */,
 				0A6F219A20695CA100B0BD37 /* NetworkWorm */,
+				0A3E2E4520E4FABB00595949 /* ImagineDragon */,
 				0A6F218020695BE400B0BD37 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -217,6 +250,7 @@
 			children = (
 				0A6F217F20695BE400B0BD37 /* SwiftMovieSearch.app */,
 				0A6F219920695CA100B0BD37 /* NetworkWorm.framework */,
+				0A3E2E4420E4FABB00595949 /* ImagineDragon.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -252,7 +286,6 @@
 		0A85E50C206D7EDA0023B417 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				0A3805A9207029B400F680E1 /* MediaManager */,
 				0A85E50D206D7EDA0023B417 /* Resources */,
 				0A85E513206D7EDA0023B417 /* Models */,
 				0A85E518206D7EDA0023B417 /* DataProvider */,
@@ -382,6 +415,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		0A3E2E3F20E4FABB00595949 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A3E2E4820E4FABB00595949 /* ImagineDragon.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0A6F219620695CA100B0BD37 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -393,6 +434,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		0A3E2E4320E4FABB00595949 /* ImagineDragon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A3E2E4D20E4FABB00595949 /* Build configuration list for PBXNativeTarget "ImagineDragon" */;
+			buildPhases = (
+				0A3E2E3F20E4FABB00595949 /* Headers */,
+				0A3E2E4020E4FABB00595949 /* Sources */,
+				0A3E2E4120E4FABB00595949 /* Frameworks */,
+				0A3E2E4220E4FABB00595949 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ImagineDragon;
+			productName = ImagineDragon;
+			productReference = 0A3E2E4420E4FABB00595949 /* ImagineDragon.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		0A6F217E20695BE400B0BD37 /* SwiftMovieSearch */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A6F219120695BE400B0BD37 /* Build configuration list for PBXNativeTarget "SwiftMovieSearch" */;
@@ -406,6 +465,7 @@
 			);
 			dependencies = (
 				0A6F219F20695CA100B0BD37 /* PBXTargetDependency */,
+				0A3E2E4A20E4FABB00595949 /* PBXTargetDependency */,
 			);
 			name = SwiftMovieSearch;
 			productName = SwiftMovieSearch;
@@ -440,6 +500,10 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Home;
 				TargetAttributes = {
+					0A3E2E4320E4FABB00595949 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+					};
 					0A6F217E20695BE400B0BD37 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1000;
@@ -467,11 +531,19 @@
 			targets = (
 				0A6F217E20695BE400B0BD37 /* SwiftMovieSearch */,
 				0A6F219820695CA100B0BD37 /* NetworkWorm */,
+				0A3E2E4320E4FABB00595949 /* ImagineDragon */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0A3E2E4220E4FABB00595949 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0A6F217D20695BE400B0BD37 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -495,11 +567,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0A3E2E4020E4FABB00595949 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A3E2E5220E4FAE100595949 /* MediaManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0A6F217B20695BE400B0BD37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A3805AB207029C000F680E1 /* MediaManager.swift in Sources */,
 				0A0D3D252073894E00D263D4 /* Numeric+Extensions.swift in Sources */,
 				0A85E554206D7EDA0023B417 /* LoggingService.swift in Sources */,
 				0AD085D0206EB57500CAFF97 /* PagedList.swift in Sources */,
@@ -557,6 +636,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0A3E2E4A20E4FABB00595949 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A3E2E4320E4FABB00595949 /* ImagineDragon */;
+			targetProxy = 0A3E2E4920E4FABB00595949 /* PBXContainerItemProxy */;
+		};
 		0A6F219F20695CA100B0BD37 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0A6F219820695CA100B0BD37 /* NetworkWorm */;
@@ -584,6 +668,57 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0A3E2E4E20E4FABB00595949 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 942QBE43P5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ImagineDragon/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				PRODUCT_BUNDLE_IDENTIFIER = org.example.ImagineDragon;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0A3E2E4F20E4FABB00595949 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 942QBE43P5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ImagineDragon/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.example.ImagineDragon;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		0A6F218F20695BE400B0BD37 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -781,6 +916,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0A3E2E4D20E4FABB00595949 /* Build configuration list for PBXNativeTarget "ImagineDragon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A3E2E4E20E4FABB00595949 /* Debug */,
+				0A3E2E4F20E4FABB00595949 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0A6F217A20695BE400B0BD37 /* Build configuration list for PBXProject "SwiftMovieSearch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

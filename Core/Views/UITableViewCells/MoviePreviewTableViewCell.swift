@@ -8,10 +8,11 @@
 
 import Foundation
 import UIKit
+import ImagineDragon
 
 class MoviePreviewTableViewCell: UITableViewCell {
     class Model {
-        var imageContainer: ImageContainer?
+        var imageContainer: ImagineDragon.ImageContainer?
         var title: String?
         var date: String?
     }
@@ -36,14 +37,14 @@ extension MoviePreviewTableViewCell: HasModelProtocol {
     func updateForNewModel() {
         // do something?
         self.titleLabel.text = self.model?.title
-        self.dateLabel.text = self.model?.date
-        self.model?.imageContainer = ImageContainer()
+        self.dateLabel.text = self.model?.date        
+        self.model?.imageContainer = ImagineDragon.ImageContainer()
         self.model?.imageContainer?.imageViewAccessor = self
     }
 }
 
 // MARK: HasImageView
-extension MoviePreviewTableViewCell: HasImageView {
+extension MoviePreviewTableViewCell: ImagineDragon.HasImageView {
     func imageViewAccessor() -> UIImageView? {
         return self.posterImageView
     }
