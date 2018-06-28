@@ -62,7 +62,7 @@ extension NetworkService {
         self.client.executeCommand(command: command, onResponse: onResponse)
     }
     
-    func downloadResourceAtUrl(url: URL?, onResponse: @escaping URLSessionWrapper.TaskCompletion) -> CancellationToken? {
+    func downloadResourceAtUrl(url: URL?, onResponse: @escaping URLSessionWrapper.TaskCompletion) -> NetworkWorm.CancellationToken? {
         return self.client.downloadAtUrl(url: url, onResponse: onResponse)
     }
     

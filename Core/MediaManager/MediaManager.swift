@@ -8,12 +8,22 @@
 
 import Foundation
 import UIKit
-import NetworkWorm
 
 protocol Statusable: class {
     var isExecuting: Bool { get }
     var isFinished: Bool { get }
     func cancel()
+}
+
+protocol CancellationToken {
+    func resume()
+    func suspend()
+    func cancel()
+}
+
+enum Triplet<A, B, C> {
+    case success(A, B)
+    case error(A, C)
 }
 
 protocol HasImageView: class {
@@ -48,12 +58,18 @@ class ImageContainer {
 
 typealias ImageResultClosure = (UIImage?) -> ()
 
+protocol DownloadImageOperationService {
+    func downloadAtUrl(url: URL?,  onResponse: @escaping DownloadImageOperation.TaskCompletion) -> CancellationToken?
+}
+
 class DownloadImageOperation: Operation {
+    typealias TaskCompletion = (Triplet<URL?, Data?, Error?>) -> Void
     typealias Completion = (Data?) -> ()
     // the same as operation.
     var onCompletion: (Completion)?
     var url: URL
     var token: CancellationToken?
+    var service: DownloadImageOperationService?
 //    weak var token: CancellationToken?
     //    var urlSessionWrapper: NetworkURLSessionWrapper?
     //    var url: URL
@@ -108,14 +124,14 @@ class DownloadImageOperation: Operation {
         self.theExecuting = true
         self.theFinished = false
 //        LoggingService.logDebug("start operation: \(self.url)")
-        self.token = NetworkService.service()?.downloadResourceAtUrl(url: self.url, onResponse: { (triplet) in
+        self.token = self.service?.downloadAtUrl(url: self.url, onResponse: { (triplet) in
             switch triplet {
             case .success( _, let data):
                 // put into image cache.
                 self.finishing(with: data)
                 return
             case .error( _, let error):
-//                LoggingService.logDebug("error while downloading image: \(error)")
+                //                LoggingService.logDebug("error while downloading image: \(error)")
                 // if error - hide it?
                 // or put in blacked list?
                 print("error: \(String(describing: error))")
@@ -123,6 +139,21 @@ class DownloadImageOperation: Operation {
                 return
             }
         })
+//        self.token = NetworkService.service()?.downloadResourceAtUrl(url: self.url, onResponse: { (triplet) in
+//            switch triplet {
+//            case .success( _, let data):
+//                // put into image cache.
+//                self.finishing(with: data)
+//                return
+//            case .error( _, let error):
+////                LoggingService.logDebug("error while downloading image: \(error)")
+//                // if error - hide it?
+//                // or put in blacked list?
+//                print("error: \(String(describing: error))")
+//                self.finishing(with: nil)
+//                return
+//            }
+//        })
     }
     
     public override func cancel() {
@@ -142,9 +173,18 @@ class DownloadImageOperation: Operation {
         // so, we need a delegate? ( to self )?
     }
     
+    init(url: URL, service: DownloadImageOperationService?, _ onCompletion: Completion?) {
+        self.url = url
+        self.service = service
+        self.onCompletion = onCompletion
+    }
     init(url: URL, _ onCompletion: Completion?) {
         self.url = url
         self.onCompletion = onCompletion
+    }
+    func configured(service: DownloadImageOperationService?) -> Self {
+        self.service = service
+        return self
     }
 }
 
@@ -168,14 +208,16 @@ class MediaManager {
         queue.maxConcurrentOperationCount = 3
         return queue
     }()
+    
     var cache: MediaCache<NSURL, UIImage>? = MediaCache()
     var delegates: [AnyObject?]?
+    var downloadService: DownloadImageOperationService?
 }
 
 // MARK: DownloadAtUrl
 extension MediaManager {
     private func downloadAtUrl(url: URL, _ onCompletion: @escaping ImageResultClosure) -> Statusable? {
-        let operation = DownloadImageOperation(url: url) {
+        let operation = DownloadImageOperation(url: url, service: self.downloadService) {
             (data) in
             // put into cache if possible.
             guard let theData = data, let image = UIImage(data: theData) else {

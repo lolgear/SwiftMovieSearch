@@ -54,6 +54,25 @@ extension BaseService: UIApplicationDelegate {
     
 }
 
+class MediaDeliveryServiceDownloadWrapper: DownloadImageOperationService {
+    func downloadAtUrl(url: URL?, onResponse: @escaping DownloadImageOperation.TaskCompletion) -> CancellationToken? {
+        return self.service?.downloadResourceAtUrl(url: url, onResponse: { (triplet) in
+            switch triplet {
+            case .success(let a, let b):
+                onResponse(.success(a, b))
+            case .error(let a, let b):
+                onResponse(.error(a, b))
+            }
+        }) as? CancellationToken
+    }
+    
+    weak var service: NetworkService?
+    
+    func configured(service: NetworkService?) -> Self {
+        self.service = service
+        return self
+    }
+}
 // MARK: Services Manager.
 class ServicesManager: NSObject {
     //MARK: Shared
@@ -99,6 +118,10 @@ class ServicesManager: NSObject {
     
     func interServiceSetup() {
         NetworkService.service()?.reachabilityObserving = ViewControllersService.service()
+        
+        // next, we have MediaService which has downloadService AS NetworkService.
+        // put it into media service?
+        MediaDeliveryService.service()?.mediaManager.downloadService = MediaDeliveryServiceDownloadWrapper().configured(service: NetworkService.service())
     }
 }
 
@@ -136,7 +159,7 @@ extension ServicesManager: UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         tearDown()
     }
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         setup()
         
         runAtFirstTime()
