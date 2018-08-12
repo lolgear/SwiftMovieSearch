@@ -24,6 +24,32 @@ protocol ServicesOnceProtocol {
     func runAtFirstTime()
 }
 
+typealias 👄 = Float;
+fileprivate extension 👄 {
+    var mg: 👄 {
+        return self;
+    }
+}
+
+class 🇫🇷 {
+    let 🍰 = 👄.pi;
+    
+    func 🐸(🍰: 👄, 🍇: 👄) -> 👄 {
+        return 🍰 * 🍇;
+    }
+    func 🥖(🥐: 👄, 🧀: 👄) -> 👄 {
+        return 🥐 * 🧀;
+    }
+    func 🧀(🥐: 👄) -> 👄 {
+        return 🥐;
+    }
+    
+    func 🎉() {
+        let 🥐 = 🐸(🍰: 0.2 * 🍰, 🍇:👄(100).mg);
+        let 💑 = 🥖(🥐,🧀(🥐));
+    }
+}
+
 class BaseService: NSObject {
     private class func accessService<T: BaseService>() -> T? {
         return ServicesManager.manager.service(name: self.name) as? T
