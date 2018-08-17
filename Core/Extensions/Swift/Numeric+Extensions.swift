@@ -11,6 +11,7 @@ import UIKit
 
 struct GoldenRatio {
     static let golderRatio = (1 + sqrt(5)) / 2
+    static let reverted = 1 / GoldenRatio.golderRatio
     static func size(width: CGFloat) -> CGSize {
         var size = CGSize.zero
         size.width = width

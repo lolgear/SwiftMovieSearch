@@ -10,12 +10,20 @@ import Foundation
 import UIKit
 
 class BasicNavigationTransitioning: NSObject {
-    var duration: TimeInterval = 1.0
+    var duration: TimeInterval = GoldenRatio.reverted
     var function = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
     var presenting = false
     // Subclass
     func prepareAnimations(transitionContext: UIViewControllerContextTransitioning, fromView: UIView, toView: UIView) {}
     func applyAnimations(transitionContext: UIViewControllerContextTransitioning, fromView: UIView, toView: UIView) {}
+}
+
+// Convenient setup
+extension BasicNavigationTransitioning {
+    func configuredBy(presenting: Bool) -> Self {
+        self.presenting = presenting
+        return self
+    }
 }
 
 // Animations
@@ -55,6 +63,7 @@ extension BasicNavigationTransitioning {
 }
 
 extension BasicNavigationTransitioning: UIViewControllerAnimatedTransitioning {
+    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return self.duration
     }
@@ -146,12 +155,14 @@ class CustomNavigationTransitioning: BasicNavigationTransitioning {
         toView.frame = initialFrame
         
         // set up from 2D transforms that we'll use in the animation
-        let offScreenRight = CGAffineTransform(translationX: container.frame.width, y: 0)
-        _ = CGAffineTransform(translationX: -container.frame.width/4, y: 0)
+        let offScreenOffsetX = (self.presenting ? 1 : -1) * container.frame.width
+        let offScreenTransform = CGAffineTransform(translationX: offScreenOffsetX, y: 0)
+        _ = CGAffineTransform(translationX: container.frame.width, y: 0)
+        _ = CGAffineTransform(translationX: -container.frame.width, y: 0)
         
         // start the toView to the right of the screen
         fromView.transform = CGAffineTransform.identity
-        toView.transform = offScreenRight
+        toView.transform = offScreenTransform
         
         // add the both views to our view controller
         container.addSubview(fromView)
