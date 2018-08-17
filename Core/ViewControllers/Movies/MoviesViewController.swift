@@ -91,7 +91,7 @@ extension MoviesViewController {
     func setupExternalTableViewComponents() {
         if self.viewIfLoaded != nil {
             self.tableView.tableHeaderView = self.searchCompanion?.searchController.searchBar
-            let activity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+            let activity = UIActivityIndicatorView(style: .gray)
             self.tableView.tableFooterView = activity
         }
     }

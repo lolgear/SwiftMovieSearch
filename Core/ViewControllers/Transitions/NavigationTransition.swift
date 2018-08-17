@@ -11,7 +11,7 @@ import UIKit
 
 class BasicNavigationTransitioning: NSObject {
     var duration: TimeInterval = 1.0
-    var function = CAMediaTimingFunction(name: convertToCAMediaTimingFunctionName(convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.easeInEaseOut)))
+    var function = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
     var presenting = false
     // Subclass
     func prepareAnimations(transitionContext: UIViewControllerContextTransitioning, fromView: UIView, toView: UIView) {}

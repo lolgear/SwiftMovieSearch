@@ -64,6 +64,8 @@ class MoviesDataProvider {
     
     var searchRequest = SearchRequest()
     var list = PagedList<Movie>()
+    
+    required init() {}
 }
 
 // MARK: HasMoviesDataSource
